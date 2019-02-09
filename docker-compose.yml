@@ -1,0 +1,32 @@
+version: "3.7"
+
+
+services:
+
+  node:
+    container_name: ${NODE_CONTAINER_NAME}
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: ${NODE_PATH_DOCKERFILE}
+    volumes:
+      - ./src/:/var/www/app:rw
+    working_dir: /var/www/app
+    ports:
+      - "8080:8080"
+    links:
+      - mongodb
+
+     
+
+  mongodb:
+    image: mongo:latest
+    container_name: ${MONGO_CONTAINER_NAME}
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - ./data/db:/data/db
+    ports:
+        - 27017:27017
+    command: mongod --smallfiles --logpath=/dev/null # --quiet

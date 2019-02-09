@@ -1,0 +1,14 @@
+{
+    "name": "ftv_bot_nodejs",
+    "version": "1.0.0",
+    "description": "Node.js on Docker",
+    "author": "Matthieu Guenebeaud <math0963@gmail.com>",
+    "main": "bot.js",
+    "scripts": {
+      "start": "node /src/bot.js"
+    },
+    "dependencies": {
+      "express": "^4.16.1"
+    }
+  }
+  
